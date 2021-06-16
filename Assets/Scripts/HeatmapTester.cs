@@ -10,6 +10,7 @@ namespace Heatmap
 
         // PUBLIC FIELDS
         public Vector2Int gridSize = new Vector2Int(256, 128);
+        public float alpha = .5f;
         public float cellSize = .0625f;
         public float heatSpeed = 5;
         public int heatSpread = 32;
@@ -38,6 +39,7 @@ namespace Heatmap
 
             material.SetInt("_GridWidth", grid.Width);
             material.SetInt("_GridHeight", grid.Height);
+            material.SetFloat("_Alpha", alpha);
             UpdateMaterialGridValues();
         }
 

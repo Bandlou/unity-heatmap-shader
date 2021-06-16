@@ -3,13 +3,16 @@ Shader "Unlit/HeatmapShader"
     Properties
     {
         _MainTex ("Texture", 2D) = "white" {}
+        _Alpha("Alpha", Float) = 1.0
         _GridWidth("Grid width", Int) = 16
         _GridHeight("Grid height", Int) = 8
     }
     SubShader
     {
-        Tags { "RenderType"="Opaque" }
+        Tags {"Queue" = "Transparent" "IgnoreProjector" = "True"}
         LOD 100
+        ZWrite Off
+        Blend SrcAlpha OneMinusSrcAlpha
 
         Pass
         {
@@ -36,6 +39,7 @@ Shader "Unlit/HeatmapShader"
 
             sampler2D _MainTex;
             float4 _MainTex_ST;
+            float _Alpha;
             int _GridWidth;
             int _GridHeight;
             Buffer<float> _GridValuesBuffer;
@@ -57,6 +61,7 @@ Shader "Unlit/HeatmapShader"
                 int valueIndex = x + y * _GridWidth;
                 float value = _GridValuesBuffer[valueIndex] * 0.01;
                 fixed4 col = tex2D(_MainTex, float2(value, 0));
+                col[3] = _Alpha;
                 // apply fog
                 UNITY_APPLY_FOG(i.fogCoord, col);
                 return col;
