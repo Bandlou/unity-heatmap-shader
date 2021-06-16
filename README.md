@@ -1,7 +1,13 @@
 # Unity Heatmap Shader
-Renders a heatmap grid on a quad mesh using a custom shader.
+## Renders a heatmap grid on a quad mesh using a custom shader
 
 ![Unity heatmap shader](ReadmeData/unity_heatmap_shader_screenshot.png "Unity heatmap shader")
+
+## The same but with a 2D sprite for the heat types
+- This model could be easily used to render a tilemap.
+- Note that the tiles are cropped in order to prevent glitchy lines or gaps between them during rendering (see [this video](https://www.youtube.com/watch?v=kbx528-lnoU)).
+
+![Unity heatmap sprite shader](ReadmeData/unity_heatmap_sprite_shader_screenshot.png "Unity heatmap sprite shader")
 
 ## References
 - [How to pass a structured buffer in to fragment shader](https://forum.unity.com/threads/how-to-pass-a-structured-buffer-in-to-fragment-shader.862216/)
